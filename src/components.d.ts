@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil-community/router";
 export namespace Components {
+    interface AppEncryptFlow {
+    }
     interface AppHome {
     }
     interface AppProfile {
@@ -14,8 +16,20 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface SidebarListItem {
+        "index": number;
+    }
+    interface SidebarRoot {
+        "currentStep": number;
+    }
 }
 declare global {
+    interface HTMLAppEncryptFlowElement extends Components.AppEncryptFlow, HTMLStencilElement {
+    }
+    var HTMLAppEncryptFlowElement: {
+        prototype: HTMLAppEncryptFlowElement;
+        new (): HTMLAppEncryptFlowElement;
+    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
@@ -34,13 +48,30 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLSidebarListItemElement extends Components.SidebarListItem, HTMLStencilElement {
+    }
+    var HTMLSidebarListItemElement: {
+        prototype: HTMLSidebarListItemElement;
+        new (): HTMLSidebarListItemElement;
+    };
+    interface HTMLSidebarRootElement extends Components.SidebarRoot, HTMLStencilElement {
+    }
+    var HTMLSidebarRootElement: {
+        prototype: HTMLSidebarRootElement;
+        new (): HTMLSidebarRootElement;
+    };
     interface HTMLElementTagNameMap {
+        "app-encrypt-flow": HTMLAppEncryptFlowElement;
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "sidebar-list-item": HTMLSidebarListItemElement;
+        "sidebar-root": HTMLSidebarRootElement;
     }
 }
 declare namespace LocalJSX {
+    interface AppEncryptFlow {
+    }
     interface AppHome {
     }
     interface AppProfile {
@@ -48,19 +79,31 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
+    interface SidebarListItem {
+        "index"?: number;
+    }
+    interface SidebarRoot {
+        "currentStep"?: number;
+    }
     interface IntrinsicElements {
+        "app-encrypt-flow": AppEncryptFlow;
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "sidebar-list-item": SidebarListItem;
+        "sidebar-root": SidebarRoot;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-encrypt-flow": LocalJSX.AppEncryptFlow & JSXBase.HTMLAttributes<HTMLAppEncryptFlowElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "sidebar-list-item": LocalJSX.SidebarListItem & JSXBase.HTMLAttributes<HTMLSidebarListItemElement>;
+            "sidebar-root": LocalJSX.SidebarRoot & JSXBase.HTMLAttributes<HTMLSidebarRootElement>;
         }
     }
 }

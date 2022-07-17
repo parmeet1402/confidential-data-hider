@@ -1,23 +1,27 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, getAssetPath } from '@stencil/core';
 
 @Component({
   tag: 'app-root',
   styleUrl: 'app-root.css',
   shadow: true,
+  assetsDirs: ['assets'],
 })
 export class AppRoot {
   render() {
+    const fileIconSrc = getAssetPath('../assets/icon/file.svg');
     return (
-      <div>
+      <div class="app__container">
         <header>
-          <h1>Stencil App Starter</h1>
+          <div class="icon__container">
+            <img src={fileIconSrc} alt="file" />
+          </div>
+          <h1>Encrypt it!</h1>
         </header>
 
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
-              <stencil-route url="/" component="app-home" exact={true} />
-              <stencil-route url="/profile/:name" component="app-profile" />
+              <stencil-route url="/" component="app-encrypt-flow" exact={true} />
             </stencil-route-switch>
           </stencil-router>
         </main>
