@@ -1,0 +1,25 @@
+:host {
+  display: block;
+}
+
+/* size */
+.heading__size--big{
+  font-size: 3.4rem;
+}
+
+.heading__size--medium{
+  font-size: 1.5rem;
+}
+
+/* color */
+.heading__color--primary{
+  color: #fff;
+}
+
+.heading__color--accent{
+  color: #c0eaf6;
+}
+
+.heading__color--gray{
+  color: #858585
+}

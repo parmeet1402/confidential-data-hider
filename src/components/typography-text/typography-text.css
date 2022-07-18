@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.text__color--primary{
+  color: #fff;
+}
+
+.text__color--accent{
+  color: #c0eaf6;
+}
+
+.text__color--gray{
+  color: #858585
+}
+
+.text__size--small{
+  font-size: 0.8rem
+}
+
+.text__size--medium{
+  font-size: 1rem;
+}

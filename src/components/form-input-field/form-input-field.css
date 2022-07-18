@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+input{
+  width: calc(100% - 32px);
+  background: transparent;
+  border: 1px solid #858585;
+  height: 2.5rem;
+  color: white;
+  border-radius: 12px;
+  font-size: 1rem;
+  padding: 8px 16px;
+  outline: none;
+  user-select: none;
+}
+input:focus{
+  border: 1px solid #c0eaf6;
+}
