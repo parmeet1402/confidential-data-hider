@@ -27,6 +27,9 @@ export namespace Components {
     }
     interface FormInputField {
     }
+    interface FormUploadFile {
+        "file": File;
+    }
     interface SidebarListItem {
         "index": number;
         "isActive": boolean;
@@ -101,6 +104,12 @@ declare global {
         prototype: HTMLFormInputFieldElement;
         new (): HTMLFormInputFieldElement;
     };
+    interface HTMLFormUploadFileElement extends Components.FormUploadFile, HTMLStencilElement {
+    }
+    var HTMLFormUploadFileElement: {
+        prototype: HTMLFormUploadFileElement;
+        new (): HTMLFormUploadFileElement;
+    };
     interface HTMLSidebarListItemElement extends Components.SidebarListItem, HTMLStencilElement {
     }
     var HTMLSidebarListItemElement: {
@@ -141,6 +150,7 @@ declare global {
         "encrypt-flow-step-two": HTMLEncryptFlowStepTwoElement;
         "form-button": HTMLFormButtonElement;
         "form-input-field": HTMLFormInputFieldElement;
+        "form-upload-file": HTMLFormUploadFileElement;
         "sidebar-list-item": HTMLSidebarListItemElement;
         "sidebar-root": HTMLSidebarRootElement;
         "step-counter": HTMLStepCounterElement;
@@ -168,6 +178,9 @@ declare namespace LocalJSX {
         "variant"?: 'solid' | 'outline';
     }
     interface FormInputField {
+    }
+    interface FormUploadFile {
+        "file"?: File;
     }
     interface SidebarListItem {
         "index"?: number;
@@ -197,6 +210,7 @@ declare namespace LocalJSX {
         "encrypt-flow-step-two": EncryptFlowStepTwo;
         "form-button": FormButton;
         "form-input-field": FormInputField;
+        "form-upload-file": FormUploadFile;
         "sidebar-list-item": SidebarListItem;
         "sidebar-root": SidebarRoot;
         "step-counter": StepCounter;
@@ -217,6 +231,7 @@ declare module "@stencil/core" {
             "encrypt-flow-step-two": LocalJSX.EncryptFlowStepTwo & JSXBase.HTMLAttributes<HTMLEncryptFlowStepTwoElement>;
             "form-button": LocalJSX.FormButton & JSXBase.HTMLAttributes<HTMLFormButtonElement>;
             "form-input-field": LocalJSX.FormInputField & JSXBase.HTMLAttributes<HTMLFormInputFieldElement>;
+            "form-upload-file": LocalJSX.FormUploadFile & JSXBase.HTMLAttributes<HTMLFormUploadFileElement>;
             "sidebar-list-item": LocalJSX.SidebarListItem & JSXBase.HTMLAttributes<HTMLSidebarListItemElement>;
             "sidebar-root": LocalJSX.SidebarRoot & JSXBase.HTMLAttributes<HTMLSidebarRootElement>;
             "step-counter": LocalJSX.StepCounter & JSXBase.HTMLAttributes<HTMLStepCounterElement>;

@@ -6,8 +6,8 @@ import { Component, Host, State, h } from '@stencil/core';
   // shadow: true,
 })
 export class AppEncryptFlow {
-  @State() currentStep: number = 1;
-  @State() hideWordsStr: string
+  @State() currentStep: number = 2;
+  @State() hideWordsStr: string;
 
   render() {
     return (
@@ -15,7 +15,7 @@ export class AppEncryptFlow {
         <sidebar-root currentStep={this.currentStep} />
         <div class="step__container">
           {this.currentStep === 1 && <encrypt-flow-step-one />}
-          {this.currentStep === 2 && <encrypt-flow-step-two>STEP TWO</encrypt-flow-step-two>}
+          {this.currentStep === 2 && <encrypt-flow-step-two />}
           {this.currentStep === 3 && <encrypt-flow-step-three>STEP THREE</encrypt-flow-step-three>}
         </div>
       </Host>

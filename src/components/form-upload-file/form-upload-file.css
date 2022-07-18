@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+button{
+  cursor: pointer;
+  height: 236px;
+  width: 200px;
+  border-radius: 12px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 5rem;
+  font-weight: 300;
+}
