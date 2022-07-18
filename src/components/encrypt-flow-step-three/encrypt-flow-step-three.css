@@ -1,3 +1,11 @@
 :host {
   display: block;
 }
+
+
+.step-three__button__row{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 4rem;
+  gap:20px
+}

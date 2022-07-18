@@ -7,8 +7,21 @@ import { Component, Host, h, State } from '@stencil/core';
 })
 export class EncryptFlowStepTwo {
   @State() file: File = null;
+  @State() errors = {
+    invalidFileType: false,
+    isMoreThan1Mb: false,
+  };
+
+  updateErrors = errors => {
+    this.errors = errors;
+  };
+
+  updateFile = file => {
+    this.file = file;
+  };
 
   render() {
+    // console.log(this.errors);
     return (
       <Host>
         <div>
@@ -16,26 +29,15 @@ export class EncryptFlowStepTwo {
           <typography-heading>Upload File</typography-heading>
           <typography-text>Please add the file to be encrypted</typography-text>
         </div>
-        <form
-          style={{
-            marginTop: '40px',
-          }}
-        >
+        <form class="file-upload-file__form">
           <div>
-            <form-upload-file file={this.file} />
-            <div>
-              <p>Only .txt files are allowed</p>
-              <p>Less than 1mb in size</p>
+            <form-upload-file file={this.file} updateErrors={this.updateErrors} updateFile={this.updateFile} />
+            <div class="file-upload-file__rules-list">
+              <typography-text color={this.errors.invalidFileType ? 'warning' : this.file === null ? 'gray' : 'success'}>Only .txt files are allowed</typography-text>
+              <typography-text color={this.errors.isMoreThan1Mb ? 'warning' : this.file === null ? 'gray' : 'success'}>Less than 1mb in size</typography-text>
             </div>
           </div>
-          <div
-            // class="step-one__button__row"
-            style={{
-              display: 'flex',
-              flexDirection: 'row-reverse',
-              marginTop: '2rem',
-            }}
-          >
+          <div class="step-two__button__row">
             <form-button>Proceed</form-button>
           </div>
         </form>

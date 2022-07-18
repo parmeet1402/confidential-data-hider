@@ -1,3 +1,21 @@
 :host {
   display: block;
 }
+
+
+.file-upload-file__rules-list{
+  display: flex;
+  flex-direction: column;
+  gap:4px;
+  margin-top: 12px;
+}
+
+.file-upload-file__form{
+  margin-top: 40px;
+}
+
+.step-two__button__row{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 2rem;
+}

@@ -11,7 +11,11 @@ export class FormButton {
   render() {
     return (
       <Host>
-        <button>
+        <button
+          class={{
+            [`button--${this.variant}`]: true,
+          }}
+        >
           <slot></slot>
         </button>
       </Host>

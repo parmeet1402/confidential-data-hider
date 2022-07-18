@@ -6,7 +6,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class TypographyText {
-  @Prop() color: 'primary' | 'accent' | 'gray' = 'gray';
+  @Prop() color: 'primary' | 'accent' | 'gray' | 'warning' | 'success' = 'gray';
   @Prop() size: 'small' | 'medium' = 'medium';
 
   render() {

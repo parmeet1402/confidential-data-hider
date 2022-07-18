@@ -29,6 +29,8 @@ export namespace Components {
     }
     interface FormUploadFile {
         "file": File;
+        "updateErrors": (error: { invalidFileType: boolean; isMoreThan1Mb: boolean }) => void;
+        "updateFile": (file: File) => void;
     }
     interface SidebarListItem {
         "index": number;
@@ -45,7 +47,7 @@ export namespace Components {
         "size": 'medium' | 'big';
     }
     interface TypographyText {
-        "color": 'primary' | 'accent' | 'gray';
+        "color": 'primary' | 'accent' | 'gray' | 'warning' | 'success';
         "size": 'small' | 'medium';
     }
 }
@@ -181,6 +183,8 @@ declare namespace LocalJSX {
     }
     interface FormUploadFile {
         "file"?: File;
+        "updateErrors"?: (error: { invalidFileType: boolean; isMoreThan1Mb: boolean }) => void;
+        "updateFile"?: (file: File) => void;
     }
     interface SidebarListItem {
         "index"?: number;
@@ -197,7 +201,7 @@ declare namespace LocalJSX {
         "size"?: 'medium' | 'big';
     }
     interface TypographyText {
-        "color"?: 'primary' | 'accent' | 'gray';
+        "color"?: 'primary' | 'accent' | 'gray' | 'warning' | 'success';
         "size"?: 'small' | 'medium';
     }
     interface IntrinsicElements {
