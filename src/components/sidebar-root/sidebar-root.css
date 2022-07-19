@@ -3,10 +3,16 @@
 }
 
 .sidebar-root{
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 4rem;
   margin-top: 4rem;
   margin-left: 2.5rem;
+}
+
+@media only screen and (min-width: 1200px) {
+  .sidebar-root{
+    display: flex;
+  }
 }
 
