@@ -5,9 +5,10 @@
 
 .step-three__button__row{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   margin-top: 4rem;
   gap:1.25rem;
+  align-items: center;
 }
 
 .step-three__content-box{
@@ -23,4 +24,10 @@
 
 .step-three__content-box--longer{
   max-width: fit-content;
+}
+
+@media only screen and (min-width: 500px) {
+  .step-three__button__row{
+    flex-direction: row-reverse;
+  }
 }
