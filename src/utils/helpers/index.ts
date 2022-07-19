@@ -64,3 +64,22 @@ export const encryptFile = (fileContent, blockString) => {
 
   return processedText;
 };
+
+export const downloadFile = (blob, fileName) => {
+  let url = URL.createObjectURL(blob);
+  let div = document.createElement('div');
+  let anch = document.createElement('a');
+
+  document.body.appendChild(div);
+  div.appendChild(anch);
+
+  anch.innerHTML = '&nbsp;';
+  div.style.width = '0';
+  div.style.height = '0';
+  anch.href = url;
+  anch.download = fileName;
+
+  let ev = new MouseEvent('click', {});
+  anch.dispatchEvent(ev);
+  document.body.removeChild(div);
+};

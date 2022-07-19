@@ -18,7 +18,14 @@ export class EncryptFlowStepOne {
           <typography-heading>Hide Words</typography-heading>
           <typography-text>Please add the words to be hidden from the text file</typography-text>
         </div>
-        <form class="step-one__form" style={{ marginTop: '3rem' }}>
+        <form
+          class="step-one__form"
+          style={{ marginTop: '3rem' }}
+          onSubmit={e => {
+            e.preventDefault();
+            this.nextStep();
+          }}
+        >
           <label class="step-one__input__container">
             <typography-text color="primary" size="small">
               Enter the words to be masked
@@ -26,7 +33,7 @@ export class EncryptFlowStepOne {
             <form-input-field value={this.hideWordsStr} handleChange={this.updateHideWordsStr} />
           </label>
           <div class="step-one__button__row">
-            <form-button handleClick={this.nextStep} disabled={!this.hideWordsStr?.trim()}>
+            <form-button type="submit" disabled={!this.hideWordsStr?.trim()}>
               Proceed
             </form-button>
           </div>

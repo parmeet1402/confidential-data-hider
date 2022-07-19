@@ -28,7 +28,13 @@ export class EncryptFlowStepTwo {
           <typography-heading>Upload File</typography-heading>
           <typography-text>Please add the file to be encrypted</typography-text>
         </div>
-        <form class="file-upload-file__form">
+        <form
+          class="file-upload-file__form"
+          onSubmit={e => {
+            e.preventDefault();
+            this.nextStep();
+          }}
+        >
           <div>
             <form-upload-file file={this.file} updateErrors={this.updateErrors} updateFile={this.updateFile} />
             <div class="file-upload-file__rules-list">
@@ -37,7 +43,7 @@ export class EncryptFlowStepTwo {
             </div>
           </div>
           <div class="step-two__button__row">
-            <form-button onClick={this.nextStep} disabled={this.file === null}>
+            <form-button type="submit" disabled={this.file === null}>
               Proceed
             </form-button>
           </div>

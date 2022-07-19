@@ -1,40 +1,5 @@
 import { Component, Host, h, Prop, State } from '@stencil/core';
-import { encryptFile } from '../../utils/helpers';
-
-const textContent: string = `Lorem ipsum text and moreooooo....dfnkldkfn jkdnjkdnfjkd ajkfadlkf jdsakfj kldasjf kdasklf jndlkas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum
-text and moreo oooo.... Lorem ipsum text and moreooooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj
-fdjjfjff dfddfdfdf Lorem ipsum text and moreooooo.... Lorem ipsum text and moreooooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf
-kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and moreooooo.... Lorem ipsum text and moreooooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk
-ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and moreooooo.... Lorem ipsum text and moreooooo....dfnkldk fnjkdnj
-kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and moreooooo.... Lorem ipsum text and
-moreoo ooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and more
-ooooo.... Lorem ipsum text and moreooooo....dfnkldkfn jkdnjkdnfjkd ajkfadlkf jdsakfj kldasjf kdasklf jndlkas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf
-Lorem ipsum text and moreo oooo.... Lorem ipsum text and moreo oooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf
-dkfjdkj fdjjfjff dfddfdfdf Lorem ipsum text and moreoo ooo.... Lorem ipsum text and moreooooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas
-jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and moreooooo.... Lorem ipsum text and moreooooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf
-jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and moreooooo.... Lorem ipsum text and moreooooo....dfnkldk
-fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and moreooooo.... Lorem ipsum text
-and moreoo ooo....dfnkldk fnjkdnj kdn fjkd ajkfadlkf jdsakfjk ldasjfkdaskl fjndl kas jfkdlajf kldajfkdjs kfjdkf dkjf dkfjdkj fdjjfjff dfddf dfdf Lorem ipsum text and more
-ooooo....`;
-
-const download = (blob, fileName) => {
-  let url = URL.createObjectURL(blob);
-  let div = document.createElement('div');
-  let anch = document.createElement('a');
-
-  document.body.appendChild(div);
-  div.appendChild(anch);
-
-  anch.innerHTML = '&nbsp;';
-  div.style.width = '0';
-  div.style.height = '0';
-  anch.href = url;
-  anch.download = fileName;
-
-  let ev = new MouseEvent('click', {});
-  anch.dispatchEvent(ev);
-  document.body.removeChild(div);
-};
+import { encryptFile, downloadFile } from '../../utils/helpers';
 
 @Component({
   tag: 'encrypt-flow-step-three',
@@ -44,54 +9,38 @@ const download = (blob, fileName) => {
 export class EncryptFlowStepThree {
   @Prop() file: File;
   @Prop() hideWordsStr: string;
-  @State() textContent: string | ArrayBuffer = '';
+  @State() textContent: string | ArrayBuffer = ``;
+  @State() isCopying: boolean;
 
-  // @Prop() nextStep: () => void;
+  handleDownloadBtnClick = () => {
+    // create blob
+    const blob = new Blob([this.textContent], { type: 'text/plain' });
 
-  // constructor() {
-  //   this.watchPropHandler = this.watchPropHandler.bind(this);
-  // }
+    // download file
+    downloadFile(blob, `Masked ${this.file.name}`);
+  };
+
+  handleCopyBtnClick = () => {
+    if (navigator.clipboard) {
+      this.isCopying = true;
+      navigator.clipboard.writeText(this.textContent as string).then(() => {
+        setTimeout(() => {
+          this.isCopying = false;
+        }, 500);
+      });
+    }
+  };
+
+  handleFileReaderOnLoad = fileReader => {
+    const output = encryptFile(fileReader.result, this.hideWordsStr);
+    this.textContent = output;
+  };
 
   componentWillLoad() {
-    let fr = new FileReader();
-    // let text;
-    console.log(this.hideWordsStr);
-    fr.addEventListener('load', () => {
-      // console.log(fr.result);
-      console.log({ result: fr.result, hideStr: this.hideWordsStr, this: this });
-      const output = encryptFile(fr.result, this.hideWordsStr);
-      console.log({ output });
-      this.textContent = output;
-    });
-    // fr.onload = function () {
-    //   // sooooo whaever gets processed will eb shown here
-    //   return fr.result;
-    //   // console.log(fr.result);
-    // };
-    fr.readAsText(this.file);
+    const fileReader = new FileReader();
+    fileReader.addEventListener('load', () => this.handleFileReaderOnLoad(fileReader));
+    fileReader.readAsText(this.file);
   }
-
-  // Watcher will view the file and update the state accordingly by reading it's content
-  // @Watch('file')
-  // watchPropHandler(newFile: File, oldFile: File) {
-  //   // Create a file reader
-  //   let fr = new FileReader();
-  //   fr.onload = function () {
-  //     // sooooo whaever gets processed will eb shown here
-  //     // this.textContent = fr.result;
-  //     // console.log(fr.result);
-  //     // TODO: later add the utility method to process it out as per the hideWordStr
-  //     encryptFile(fr.result);
-  //   };
-  //   fr.readAsText(newFile);
-
-  // After having the file reader
-  // Extract contents out of it, once done with that
-  // this.textContent = whatever content of file is show that
-
-  // this.textContent = new
-  // console.log('The new value of activated is: ', newValue);
-  // }
 
   render() {
     return (
@@ -102,48 +51,17 @@ export class EncryptFlowStepThree {
           <typography-text>Please view the masked out version of the file below</typography-text>
         </div>
         <div
-          class=""
-          style={{
-            border: '2px solid #fff',
-            margin: '40px 0',
-            padding: '20px',
-            borderRadius: '12px',
-            height: '280px',
-            overflowY: 'auto',
-            // width: '62vw',
-            width: '100%',
-            maxWidth: 'fit-content',
-            boxSizing: 'border-box',
+          class={{
+            'step-three__content-box': true,
+            'step-three__content-box--longer': (this.textContent as string).length > 100,
           }}
         >
           {this.textContent}
         </div>
         <div class="step-three__button__row">
-          <form-button
-            onClick={() => {
-              // TODO: create blob
-              const blob = new Blob([this.textContent], { type: 'text/plain' });
-
-              // TODO: get the name of the file
-              // download file
-              download(blob,`Masked ${this.file.name}`);
-            }}
-          >
-            Download
-          </form-button>
-          <form-button
-            variant="outline"
-            onClick={() => {
-              console.log('copy functionality...');
-              if (navigator.clipboard) {
-                navigator.clipboard.writeText(this.textContent as string).then(() => {
-                  // TODO: copied to clipboard..
-                  // TODO: timeout 500s to change it back to copy button
-                });
-              }
-            }}
-          >
-            Copy
+          <form-button onClick={this.handleDownloadBtnClick}>Download</form-button>
+          <form-button variant="outline" onClick={this.handleCopyBtnClick}>
+            {this.isCopying ? 'Copied!' : 'Copy'}
           </form-button>
         </div>
       </Host>

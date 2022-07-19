@@ -51,7 +51,12 @@ export class FormUploadFile {
             ref={el => (this.fileInputEl = el as HTMLInputElement)}
             onChange={e => {
               const el = e.target as HTMLInputElement;
-              const file = el.files[0];
+              const files = el.files;
+              if (files.length !== 1) {
+                return;
+              }
+
+              const file = files[0];
               // TODO: only one file is allowed
               // validations
               const { isValid, errors } = this.validateFile(file);
