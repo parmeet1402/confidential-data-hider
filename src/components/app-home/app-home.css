@@ -1,16 +1,16 @@
 .app-home {
-  padding: 10px;
+  padding: 0.625rem;
 }
 
 button {
   background: #5851ff;
   color: white;
-  margin: 8px;
+  margin: 0.5rem;
   border: none;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 16px 20px;
+  padding: 1rem 1.25rem;
   border-radius: 2px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
   outline: 0;

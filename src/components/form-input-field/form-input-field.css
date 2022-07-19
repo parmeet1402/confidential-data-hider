@@ -3,14 +3,14 @@
 }
 
 input{
-  width: calc(100% - 32px);
+  width: calc(100% - 2rem);
   background: transparent;
   border: 1px solid #858585;
   height: 2.5rem;
   color: white;
   border-radius: 12px;
   font-size: 1rem;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   outline: none;
   user-select: none;
 }
