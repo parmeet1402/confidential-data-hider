@@ -7,8 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil-community/router";
 export namespace Components {
-    interface AppEncryptFlow {
-    }
     interface AppHome {
     }
     interface AppProfile {
@@ -16,16 +14,21 @@ export namespace Components {
     }
     interface AppRoot {
     }
-    interface EncryptFlowStepOne {
+    interface EncryptFileFlowRoot {
+    }
+    interface EncryptFileFlowStepCounter {
+        "count": number;
+    }
+    interface EncryptFileFlowStepOne {
         "hideWordsStr": string;
         "nextStep": () => void;
         "updateHideWordsStr": (str: string) => void;
     }
-    interface EncryptFlowStepThree {
+    interface EncryptFileFlowStepThree {
         "file": File;
         "hideWordsStr": string;
     }
-    interface EncryptFlowStepTwo {
+    interface EncryptFileFlowStepTwo {
         "file": File;
         "nextStep": () => void;
         "updateFile": (file: File) => void;
@@ -45,15 +48,16 @@ export namespace Components {
         "updateErrors": (error: { invalidFileType: boolean; isMoreThan1Mb: boolean }) => void;
         "updateFile": (file: File) => void;
     }
-    interface SidebarListItem {
-        "index": number;
-        "isActive": boolean;
+    interface LayoutHeader {
     }
-    interface SidebarRoot {
+    interface LayoutMain {
+    }
+    interface LayoutSidebar {
         "currentStep": number;
     }
-    interface StepCounter {
-        "count": number;
+    interface LayoutSidebarListItem {
+        "index": number;
+        "isActive": boolean;
     }
     interface TypographyHeading {
         "color": 'primary' | 'accent' | 'gray';
@@ -65,12 +69,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLAppEncryptFlowElement extends Components.AppEncryptFlow, HTMLStencilElement {
-    }
-    var HTMLAppEncryptFlowElement: {
-        prototype: HTMLAppEncryptFlowElement;
-        new (): HTMLAppEncryptFlowElement;
-    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
@@ -89,23 +87,35 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
-    interface HTMLEncryptFlowStepOneElement extends Components.EncryptFlowStepOne, HTMLStencilElement {
+    interface HTMLEncryptFileFlowRootElement extends Components.EncryptFileFlowRoot, HTMLStencilElement {
     }
-    var HTMLEncryptFlowStepOneElement: {
-        prototype: HTMLEncryptFlowStepOneElement;
-        new (): HTMLEncryptFlowStepOneElement;
+    var HTMLEncryptFileFlowRootElement: {
+        prototype: HTMLEncryptFileFlowRootElement;
+        new (): HTMLEncryptFileFlowRootElement;
     };
-    interface HTMLEncryptFlowStepThreeElement extends Components.EncryptFlowStepThree, HTMLStencilElement {
+    interface HTMLEncryptFileFlowStepCounterElement extends Components.EncryptFileFlowStepCounter, HTMLStencilElement {
     }
-    var HTMLEncryptFlowStepThreeElement: {
-        prototype: HTMLEncryptFlowStepThreeElement;
-        new (): HTMLEncryptFlowStepThreeElement;
+    var HTMLEncryptFileFlowStepCounterElement: {
+        prototype: HTMLEncryptFileFlowStepCounterElement;
+        new (): HTMLEncryptFileFlowStepCounterElement;
     };
-    interface HTMLEncryptFlowStepTwoElement extends Components.EncryptFlowStepTwo, HTMLStencilElement {
+    interface HTMLEncryptFileFlowStepOneElement extends Components.EncryptFileFlowStepOne, HTMLStencilElement {
     }
-    var HTMLEncryptFlowStepTwoElement: {
-        prototype: HTMLEncryptFlowStepTwoElement;
-        new (): HTMLEncryptFlowStepTwoElement;
+    var HTMLEncryptFileFlowStepOneElement: {
+        prototype: HTMLEncryptFileFlowStepOneElement;
+        new (): HTMLEncryptFileFlowStepOneElement;
+    };
+    interface HTMLEncryptFileFlowStepThreeElement extends Components.EncryptFileFlowStepThree, HTMLStencilElement {
+    }
+    var HTMLEncryptFileFlowStepThreeElement: {
+        prototype: HTMLEncryptFileFlowStepThreeElement;
+        new (): HTMLEncryptFileFlowStepThreeElement;
+    };
+    interface HTMLEncryptFileFlowStepTwoElement extends Components.EncryptFileFlowStepTwo, HTMLStencilElement {
+    }
+    var HTMLEncryptFileFlowStepTwoElement: {
+        prototype: HTMLEncryptFileFlowStepTwoElement;
+        new (): HTMLEncryptFileFlowStepTwoElement;
     };
     interface HTMLFormButtonElement extends Components.FormButton, HTMLStencilElement {
     }
@@ -125,23 +135,29 @@ declare global {
         prototype: HTMLFormUploadFileElement;
         new (): HTMLFormUploadFileElement;
     };
-    interface HTMLSidebarListItemElement extends Components.SidebarListItem, HTMLStencilElement {
+    interface HTMLLayoutHeaderElement extends Components.LayoutHeader, HTMLStencilElement {
     }
-    var HTMLSidebarListItemElement: {
-        prototype: HTMLSidebarListItemElement;
-        new (): HTMLSidebarListItemElement;
+    var HTMLLayoutHeaderElement: {
+        prototype: HTMLLayoutHeaderElement;
+        new (): HTMLLayoutHeaderElement;
     };
-    interface HTMLSidebarRootElement extends Components.SidebarRoot, HTMLStencilElement {
+    interface HTMLLayoutMainElement extends Components.LayoutMain, HTMLStencilElement {
     }
-    var HTMLSidebarRootElement: {
-        prototype: HTMLSidebarRootElement;
-        new (): HTMLSidebarRootElement;
+    var HTMLLayoutMainElement: {
+        prototype: HTMLLayoutMainElement;
+        new (): HTMLLayoutMainElement;
     };
-    interface HTMLStepCounterElement extends Components.StepCounter, HTMLStencilElement {
+    interface HTMLLayoutSidebarElement extends Components.LayoutSidebar, HTMLStencilElement {
     }
-    var HTMLStepCounterElement: {
-        prototype: HTMLStepCounterElement;
-        new (): HTMLStepCounterElement;
+    var HTMLLayoutSidebarElement: {
+        prototype: HTMLLayoutSidebarElement;
+        new (): HTMLLayoutSidebarElement;
+    };
+    interface HTMLLayoutSidebarListItemElement extends Components.LayoutSidebarListItem, HTMLStencilElement {
+    }
+    var HTMLLayoutSidebarListItemElement: {
+        prototype: HTMLLayoutSidebarListItemElement;
+        new (): HTMLLayoutSidebarListItemElement;
     };
     interface HTMLTypographyHeadingElement extends Components.TypographyHeading, HTMLStencilElement {
     }
@@ -156,26 +172,26 @@ declare global {
         new (): HTMLTypographyTextElement;
     };
     interface HTMLElementTagNameMap {
-        "app-encrypt-flow": HTMLAppEncryptFlowElement;
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
-        "encrypt-flow-step-one": HTMLEncryptFlowStepOneElement;
-        "encrypt-flow-step-three": HTMLEncryptFlowStepThreeElement;
-        "encrypt-flow-step-two": HTMLEncryptFlowStepTwoElement;
+        "encrypt-file-flow-root": HTMLEncryptFileFlowRootElement;
+        "encrypt-file-flow-step-counter": HTMLEncryptFileFlowStepCounterElement;
+        "encrypt-file-flow-step-one": HTMLEncryptFileFlowStepOneElement;
+        "encrypt-file-flow-step-three": HTMLEncryptFileFlowStepThreeElement;
+        "encrypt-file-flow-step-two": HTMLEncryptFileFlowStepTwoElement;
         "form-button": HTMLFormButtonElement;
         "form-input-field": HTMLFormInputFieldElement;
         "form-upload-file": HTMLFormUploadFileElement;
-        "sidebar-list-item": HTMLSidebarListItemElement;
-        "sidebar-root": HTMLSidebarRootElement;
-        "step-counter": HTMLStepCounterElement;
+        "layout-header": HTMLLayoutHeaderElement;
+        "layout-main": HTMLLayoutMainElement;
+        "layout-sidebar": HTMLLayoutSidebarElement;
+        "layout-sidebar-list-item": HTMLLayoutSidebarListItemElement;
         "typography-heading": HTMLTypographyHeadingElement;
         "typography-text": HTMLTypographyTextElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppEncryptFlow {
-    }
     interface AppHome {
     }
     interface AppProfile {
@@ -183,16 +199,21 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
-    interface EncryptFlowStepOne {
+    interface EncryptFileFlowRoot {
+    }
+    interface EncryptFileFlowStepCounter {
+        "count"?: number;
+    }
+    interface EncryptFileFlowStepOne {
         "hideWordsStr"?: string;
         "nextStep"?: () => void;
         "updateHideWordsStr"?: (str: string) => void;
     }
-    interface EncryptFlowStepThree {
+    interface EncryptFileFlowStepThree {
         "file"?: File;
         "hideWordsStr"?: string;
     }
-    interface EncryptFlowStepTwo {
+    interface EncryptFileFlowStepTwo {
         "file"?: File;
         "nextStep"?: () => void;
         "updateFile"?: (file: File) => void;
@@ -212,15 +233,16 @@ declare namespace LocalJSX {
         "updateErrors"?: (error: { invalidFileType: boolean; isMoreThan1Mb: boolean }) => void;
         "updateFile"?: (file: File) => void;
     }
-    interface SidebarListItem {
-        "index"?: number;
-        "isActive"?: boolean;
+    interface LayoutHeader {
     }
-    interface SidebarRoot {
+    interface LayoutMain {
+    }
+    interface LayoutSidebar {
         "currentStep"?: number;
     }
-    interface StepCounter {
-        "count"?: number;
+    interface LayoutSidebarListItem {
+        "index"?: number;
+        "isActive"?: boolean;
     }
     interface TypographyHeading {
         "color"?: 'primary' | 'accent' | 'gray';
@@ -231,19 +253,21 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium';
     }
     interface IntrinsicElements {
-        "app-encrypt-flow": AppEncryptFlow;
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
-        "encrypt-flow-step-one": EncryptFlowStepOne;
-        "encrypt-flow-step-three": EncryptFlowStepThree;
-        "encrypt-flow-step-two": EncryptFlowStepTwo;
+        "encrypt-file-flow-root": EncryptFileFlowRoot;
+        "encrypt-file-flow-step-counter": EncryptFileFlowStepCounter;
+        "encrypt-file-flow-step-one": EncryptFileFlowStepOne;
+        "encrypt-file-flow-step-three": EncryptFileFlowStepThree;
+        "encrypt-file-flow-step-two": EncryptFileFlowStepTwo;
         "form-button": FormButton;
         "form-input-field": FormInputField;
         "form-upload-file": FormUploadFile;
-        "sidebar-list-item": SidebarListItem;
-        "sidebar-root": SidebarRoot;
-        "step-counter": StepCounter;
+        "layout-header": LayoutHeader;
+        "layout-main": LayoutMain;
+        "layout-sidebar": LayoutSidebar;
+        "layout-sidebar-list-item": LayoutSidebarListItem;
         "typography-heading": TypographyHeading;
         "typography-text": TypographyText;
     }
@@ -252,19 +276,21 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-encrypt-flow": LocalJSX.AppEncryptFlow & JSXBase.HTMLAttributes<HTMLAppEncryptFlowElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
-            "encrypt-flow-step-one": LocalJSX.EncryptFlowStepOne & JSXBase.HTMLAttributes<HTMLEncryptFlowStepOneElement>;
-            "encrypt-flow-step-three": LocalJSX.EncryptFlowStepThree & JSXBase.HTMLAttributes<HTMLEncryptFlowStepThreeElement>;
-            "encrypt-flow-step-two": LocalJSX.EncryptFlowStepTwo & JSXBase.HTMLAttributes<HTMLEncryptFlowStepTwoElement>;
+            "encrypt-file-flow-root": LocalJSX.EncryptFileFlowRoot & JSXBase.HTMLAttributes<HTMLEncryptFileFlowRootElement>;
+            "encrypt-file-flow-step-counter": LocalJSX.EncryptFileFlowStepCounter & JSXBase.HTMLAttributes<HTMLEncryptFileFlowStepCounterElement>;
+            "encrypt-file-flow-step-one": LocalJSX.EncryptFileFlowStepOne & JSXBase.HTMLAttributes<HTMLEncryptFileFlowStepOneElement>;
+            "encrypt-file-flow-step-three": LocalJSX.EncryptFileFlowStepThree & JSXBase.HTMLAttributes<HTMLEncryptFileFlowStepThreeElement>;
+            "encrypt-file-flow-step-two": LocalJSX.EncryptFileFlowStepTwo & JSXBase.HTMLAttributes<HTMLEncryptFileFlowStepTwoElement>;
             "form-button": LocalJSX.FormButton & JSXBase.HTMLAttributes<HTMLFormButtonElement>;
             "form-input-field": LocalJSX.FormInputField & JSXBase.HTMLAttributes<HTMLFormInputFieldElement>;
             "form-upload-file": LocalJSX.FormUploadFile & JSXBase.HTMLAttributes<HTMLFormUploadFileElement>;
-            "sidebar-list-item": LocalJSX.SidebarListItem & JSXBase.HTMLAttributes<HTMLSidebarListItemElement>;
-            "sidebar-root": LocalJSX.SidebarRoot & JSXBase.HTMLAttributes<HTMLSidebarRootElement>;
-            "step-counter": LocalJSX.StepCounter & JSXBase.HTMLAttributes<HTMLStepCounterElement>;
+            "layout-header": LocalJSX.LayoutHeader & JSXBase.HTMLAttributes<HTMLLayoutHeaderElement>;
+            "layout-main": LocalJSX.LayoutMain & JSXBase.HTMLAttributes<HTMLLayoutMainElement>;
+            "layout-sidebar": LocalJSX.LayoutSidebar & JSXBase.HTMLAttributes<HTMLLayoutSidebarElement>;
+            "layout-sidebar-list-item": LocalJSX.LayoutSidebarListItem & JSXBase.HTMLAttributes<HTMLLayoutSidebarListItemElement>;
             "typography-heading": LocalJSX.TypographyHeading & JSXBase.HTMLAttributes<HTMLTypographyHeadingElement>;
             "typography-text": LocalJSX.TypographyText & JSXBase.HTMLAttributes<HTMLTypographyTextElement>;
         }

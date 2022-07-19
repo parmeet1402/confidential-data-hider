@@ -1,0 +1,16 @@
+.file-upload-file__rules-list{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.75rem;
+}
+
+.file-upload-file__form{
+  margin-top: 2.5rem;
+}
+
+.step-two__button__row{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 2rem;
+}

@@ -1,0 +1,28 @@
+.step-three__button__row{
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 4rem;
+  gap:1.25rem;
+  align-items: center;
+}
+
+.step-three__content-box{
+  border: 2px solid var(--white);
+  margin: 2.5rem 0;
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  height: 17.5rem;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.step-three__content-box--longer{
+  max-width: fit-content;
+}
+
+@media only screen and (min-width: 500px) {
+  .step-three__button__row{
+    flex-direction: row-reverse;
+  }
+}

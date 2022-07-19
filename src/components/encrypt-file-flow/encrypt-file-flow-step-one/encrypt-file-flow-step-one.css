@@ -1,0 +1,15 @@
+.step-one__form{
+  margin-top: 3rem;
+}
+
+.step-one__input__container{
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.step-one__button__row{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 8rem;
+}

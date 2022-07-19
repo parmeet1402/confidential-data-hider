@@ -1,0 +1,21 @@
+button{
+  height: 3.375rem;
+  min-width: 12.5rem;
+  border-radius: var(--border-radius);
+  outline: none;
+  border: none;
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
+
+.button--outline{
+  border: 2px solid var(--white);
+  background: transparent;
+  color: var(--white);
+}

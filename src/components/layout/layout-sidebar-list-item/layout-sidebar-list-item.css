@@ -1,0 +1,9 @@
+.sidebar-list__item{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--gray);
+}
+
+.sidebar-list__item--selected{
+  color: var(--accent);
+}
