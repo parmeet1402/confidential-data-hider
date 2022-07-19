@@ -8,7 +8,7 @@ button{
   border-radius: 12px;
   outline: none;
   border: none;
-  color: #000;
+  color: var(--black);
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
@@ -19,7 +19,7 @@ button:disabled{
 }
 
 .button--outline{
-  border: 2px solid #fff;
+  border: 2px solid var(--white);
   background: transparent;
-  color: #fff;
+  color: var(--white);
 }

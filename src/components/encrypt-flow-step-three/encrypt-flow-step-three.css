@@ -12,7 +12,7 @@
 }
 
 .step-three__content-box{
-  border: 2px solid #fff;
+  border: 2px solid var(--white);
   margin: 2.5rem 0;
   padding: 1.25rem;
   border-radius: 12px;

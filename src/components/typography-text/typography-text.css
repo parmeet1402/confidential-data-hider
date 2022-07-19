@@ -3,23 +3,23 @@
 }
 
 .text__color--primary{
-  color: #fff;
+  color: var(--white);
 }
 
 .text__color--accent{
-  color: #c0eaf6;
+  color: var(--accent);
 }
 
 .text__color--gray{
-  color: #858585
+  color: var(--gray);
 }
 
 .text__color--warning{
-  color: #f89797;
+  color: var(--warning);
 }
 
 .text__color--success{
-  color: #97f8b2;
+  color: var(--success);
 }
 
 .text__size--small{

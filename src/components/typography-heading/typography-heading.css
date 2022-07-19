@@ -13,13 +13,13 @@
 
 /* color */
 .heading__color--primary{
-  color: #fff;
+  color: var(--white);
 }
 
 .heading__color--accent{
-  color: #c0eaf6;
+  color: var(--accent);
 }
 
 .heading__color--gray{
-  color: #858585
+  color: var(--gray);
 }

@@ -5,9 +5,9 @@
 .sidebar-list__item{
   font-size: 1.5rem;
   font-weight: bold;
-  color: #858585;
+  color: var(--gray);
 }
 
 .sidebar-list__item--selected{
-  color: #c0eaf6;
+  color: var(--accent);
 }

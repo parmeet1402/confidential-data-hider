@@ -5,7 +5,7 @@
 }
 
 .icon__container{
-  background-color: #c0eaf6;
+  background-color: var(--accent);
   height: 4rem;
   width: 4rem;
   display: flex;
