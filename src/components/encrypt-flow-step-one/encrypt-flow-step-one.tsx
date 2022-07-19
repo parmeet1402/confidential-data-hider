@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'encrypt-flow-step-one',
@@ -6,6 +6,10 @@ import { Component, Host, h } from '@stencil/core';
   // shadow: true,
 })
 export class EncryptFlowStepOne {
+  @Prop() nextStep: () => void;
+  @Prop() updateHideWordsStr: (str: string) => void;
+  @Prop() hideWordsStr: string;
+
   render() {
     return (
       <Host>
@@ -19,10 +23,10 @@ export class EncryptFlowStepOne {
             <typography-text color="primary" size="small">
               Enter the words to be masked
             </typography-text>
-            <form-input-field />
+            <form-input-field value={this.hideWordsStr} handleChange={this.updateHideWordsStr} />
           </label>
           <div class="step-one__button__row">
-            <form-button>Proceed</form-button>
+            <form-button onClick={this.nextStep}>Proceed</form-button>
           </div>
         </form>
       </Host>

@@ -17,15 +17,25 @@ export namespace Components {
     interface AppRoot {
     }
     interface EncryptFlowStepOne {
+        "hideWordsStr": string;
+        "nextStep": () => void;
+        "updateHideWordsStr": (str: string) => void;
     }
     interface EncryptFlowStepThree {
+        "file": File;
+        "hideWordsStr": string;
     }
     interface EncryptFlowStepTwo {
+        "file": File;
+        "nextStep": () => void;
+        "updateFile": (file: File) => void;
     }
     interface FormButton {
         "variant": 'solid' | 'outline';
     }
     interface FormInputField {
+        "handleChange": (s: string) => void;
+        "value": string;
     }
     interface FormUploadFile {
         "file": File;
@@ -171,15 +181,25 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface EncryptFlowStepOne {
+        "hideWordsStr"?: string;
+        "nextStep"?: () => void;
+        "updateHideWordsStr"?: (str: string) => void;
     }
     interface EncryptFlowStepThree {
+        "file"?: File;
+        "hideWordsStr"?: string;
     }
     interface EncryptFlowStepTwo {
+        "file"?: File;
+        "nextStep"?: () => void;
+        "updateFile"?: (file: File) => void;
     }
     interface FormButton {
         "variant"?: 'solid' | 'outline';
     }
     interface FormInputField {
+        "handleChange"?: (s: string) => void;
+        "value"?: string;
     }
     interface FormUploadFile {
         "file"?: File;

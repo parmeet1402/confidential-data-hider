@@ -1,4 +1,4 @@
-import { Component, Host, h, getAssetPath, State, Prop } from '@stencil/core';
+import { Component, Host, h, getAssetPath, Prop } from '@stencil/core';
 
 const MAX_ALLOWED_FILE_SIZE = 1048576;
 

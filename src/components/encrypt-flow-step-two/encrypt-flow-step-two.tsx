@@ -1,4 +1,4 @@
-import { Component, Host, h, State } from '@stencil/core';
+import { Component, Host, h, State, Prop } from '@stencil/core';
 
 @Component({
   tag: 'encrypt-flow-step-two',
@@ -6,7 +6,10 @@ import { Component, Host, h, State } from '@stencil/core';
   shadow: true,
 })
 export class EncryptFlowStepTwo {
-  @State() file: File = null;
+  @Prop() updateFile: (file: File) => void;
+  @Prop() file: File;
+  @Prop() nextStep: () => void;
+
   @State() errors = {
     invalidFileType: false,
     isMoreThan1Mb: false,
@@ -14,10 +17,6 @@ export class EncryptFlowStepTwo {
 
   updateErrors = errors => {
     this.errors = errors;
-  };
-
-  updateFile = file => {
-    this.file = file;
   };
 
   render() {
@@ -38,7 +37,7 @@ export class EncryptFlowStepTwo {
             </div>
           </div>
           <div class="step-two__button__row">
-            <form-button>Proceed</form-button>
+            <form-button onClick={this.nextStep}>Proceed</form-button>
           </div>
         </form>
       </Host>
