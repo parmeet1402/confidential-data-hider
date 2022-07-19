@@ -10,7 +10,14 @@ export class EncryptFlowStepOne {
   @Prop() updateHideWordsStr: (str: string) => void;
   @Prop() hideWordsStr: string;
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.nextStep();
+  };
+
   render() {
+    const canProceed = !!this.hideWordsStr?.trim();
+
     return (
       <Host>
         <div>
@@ -18,14 +25,7 @@ export class EncryptFlowStepOne {
           <typography-heading>Hide Words</typography-heading>
           <typography-text>Please add the words to be hidden from the text file</typography-text>
         </div>
-        <form
-          class="step-one__form"
-          style={{ marginTop: '3rem' }}
-          onSubmit={e => {
-            e.preventDefault();
-            this.nextStep();
-          }}
-        >
+        <form class="step-one__form" onSubmit={this.handleSubmit}>
           <label class="step-one__input__container">
             <typography-text color="primary" size="small">
               Enter the words to be masked
@@ -33,7 +33,7 @@ export class EncryptFlowStepOne {
             <form-input-field value={this.hideWordsStr} handleChange={this.updateHideWordsStr} />
           </label>
           <div class="step-one__button__row">
-            <form-button type="submit" disabled={!this.hideWordsStr?.trim()}>
+            <form-button type="submit" disabled={!canProceed}>
               Proceed
             </form-button>
           </div>
