@@ -6,7 +6,7 @@ import { Component, Host, State, h } from '@stencil/core';
   // shadow: true,
 })
 export class AppEncryptFlow {
-  @State() currentStep: number = 3;
+  @State() currentStep: number = 1;
   @State() hideWordsStr: string;
   @State() file: File = null;
 
