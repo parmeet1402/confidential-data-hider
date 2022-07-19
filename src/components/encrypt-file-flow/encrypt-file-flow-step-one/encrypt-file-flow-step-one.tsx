@@ -33,7 +33,7 @@ export class EncryptFlowStepOne {
             <form-input-field value={this.hideWordsStr} handleChange={this.updateHideWordsStr} />
           </label>
           <div class="step-one__button__row">
-            <form-button type="submit" disabled={!canProceed}>
+            <form-button type="submit" disabled={!canProceed} onClick={this.nextStep}>
               Proceed
             </form-button>
           </div>
