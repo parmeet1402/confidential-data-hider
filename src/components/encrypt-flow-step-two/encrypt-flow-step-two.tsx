@@ -19,8 +19,12 @@ export class EncryptFlowStepTwo {
     this.errors = errors;
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.nextStep();
+  };
+
   render() {
-    // console.log(this.errors);
     return (
       <Host>
         <div>
@@ -28,13 +32,7 @@ export class EncryptFlowStepTwo {
           <typography-heading>Upload File</typography-heading>
           <typography-text>Please add the file to be encrypted</typography-text>
         </div>
-        <form
-          class="file-upload-file__form"
-          onSubmit={e => {
-            e.preventDefault();
-            this.nextStep();
-          }}
-        >
+        <form class="file-upload-file__form" onSubmit={this.handleSubmit}>
           <div>
             <form-upload-file file={this.file} updateErrors={this.updateErrors} updateFile={this.updateFile} />
             <div class="file-upload-file__rules-list">
