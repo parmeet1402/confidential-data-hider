@@ -37,7 +37,9 @@ export class EncryptFlowStepTwo {
             </div>
           </div>
           <div class="step-two__button__row">
-            <form-button onClick={this.nextStep}>Proceed</form-button>
+            <form-button onClick={this.nextStep} disabled={this.file === null}>
+              Proceed
+            </form-button>
           </div>
         </form>
       </Host>

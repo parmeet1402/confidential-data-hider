@@ -3,7 +3,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 @Component({
   tag: 'encrypt-flow-step-one',
   styleUrl: 'encrypt-flow-step-one.css',
-  // shadow: true,
+  shadow: true,
 })
 export class EncryptFlowStepOne {
   @Prop() nextStep: () => void;
@@ -26,7 +26,9 @@ export class EncryptFlowStepOne {
             <form-input-field value={this.hideWordsStr} handleChange={this.updateHideWordsStr} />
           </label>
           <div class="step-one__button__row">
-            <form-button onClick={this.nextStep}>Proceed</form-button>
+            <form-button handleClick={this.nextStep} disabled={!this.hideWordsStr?.trim()}>
+              Proceed
+            </form-button>
           </div>
         </form>
       </Host>

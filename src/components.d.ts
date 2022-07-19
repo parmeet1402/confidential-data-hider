@@ -31,6 +31,8 @@ export namespace Components {
         "updateFile": (file: File) => void;
     }
     interface FormButton {
+        "disabled": boolean;
+        "handleClick": () => void;
         "variant": 'solid' | 'outline';
     }
     interface FormInputField {
@@ -195,6 +197,8 @@ declare namespace LocalJSX {
         "updateFile"?: (file: File) => void;
     }
     interface FormButton {
+        "disabled"?: boolean;
+        "handleClick"?: () => void;
         "variant"?: 'solid' | 'outline';
     }
     interface FormInputField {

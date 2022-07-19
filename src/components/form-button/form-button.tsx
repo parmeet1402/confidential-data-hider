@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'form-button',
@@ -7,18 +7,20 @@ import { Component, Host, h, Prop } from '@stencil/core';
 })
 export class FormButton {
   @Prop() variant: 'solid' | 'outline' = 'solid';
+  @Prop() disabled: boolean = false;
+  @Prop() handleClick: () => void;
 
   render() {
     return (
-      <Host>
-        <button
-          class={{
-            [`button--${this.variant}`]: true,
-          }}
-        >
-          <slot></slot>
-        </button>
-      </Host>
+      <button
+        class={{
+          [`button--${this.variant}`]: true,
+        }}
+        disabled={this.disabled}
+        onClick={this.handleClick}
+      >
+        <slot></slot>
+      </button>
     );
   }
 }

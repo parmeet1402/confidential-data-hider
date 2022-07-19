@@ -64,9 +64,8 @@ export class FormUploadFile {
               } else {
                 this.updateFile(file);
                 // console.log({ errors });
+                // DONE: make the required ones green
                 this.updateErrors(errors);
-                // TODO: make the required ones green
-                // TODO: set the file to green
                 // TODO: make the proceed button active
                 // TODO: render the delete button
                 // TODO: make the UI change to that of filled version
