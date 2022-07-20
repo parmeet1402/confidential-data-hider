@@ -15,9 +15,9 @@ export class FormUploadFile {
 
   private fileInputEl?: HTMLInputElement;
 
+  // Validations
   isInValidFileType = name => name.split('.').pop() !== 'txt';
   isMoreThan1Mb = (size: number) => size > MAX_ALLOWED_FILE_SIZE;
-
   validateFile = (
     file: File,
   ): {
@@ -35,6 +35,33 @@ export class FormUploadFile {
     return { isValid, errors };
   };
 
+  // Handlers
+  handleDeleteIconClick = () => {
+    this.updateFile(null);
+    this.updateErrors({ invalidFileType: false, isMoreThan1Mb: false });
+  };
+
+  handleFileUpload = e => {
+    const el = e.target as HTMLInputElement;
+    const files = el.files;
+    if (files.length !== 1) {
+      return;
+    }
+    const file = files[0];
+    const { isValid, errors } = this.validateFile(file);
+    if (!isValid) {
+      this.updateFile(null);
+      this.updateErrors(errors);
+    } else {
+      this.updateFile(file);
+      this.updateErrors(errors);
+    }
+  };
+
+  handleUploadButtonClick = () => {
+    this.fileInputEl.click();
+  };
+
   render() {
     const plusIconSrc = getAssetPath('../assets/icon/plus.svg');
     const fileIconSrc = getAssetPath('../assets/icon/file.svg');
@@ -43,46 +70,8 @@ export class FormUploadFile {
     if (this.file === null) {
       return (
         <div>
-          <input
-            type="file"
-            hidden
-            name=""
-            id=""
-            ref={el => (this.fileInputEl = el as HTMLInputElement)}
-            onChange={e => {
-              const el = e.target as HTMLInputElement;
-              const files = el.files;
-              if (files.length !== 1) {
-                return;
-              }
-
-              const file = files[0];
-              // TODO: only one file is allowed
-              // validations
-              const { isValid, errors } = this.validateFile(file);
-              // console.log(isValid, errors);
-              if (!isValid) {
-                // TODO: make the required ones red
-                this.updateFile(null);
-                // console.log({ errors });
-                this.updateErrors(errors);
-              } else {
-                this.updateFile(file);
-                // console.log({ errors });
-                // DONE: make the required ones green
-                this.updateErrors(errors);
-                // TODO: make the proceed button active
-                // TODO: render the delete button
-                // TODO: make the UI change to that of filled version
-              }
-            }}
-          />
-          <button
-            onClick={() => {
-              this.fileInputEl.click();
-            }}
-            type="button"
-          >
+          <input type="file" hidden name="" id="" ref={el => (this.fileInputEl = el as HTMLInputElement)} onChange={this.handleFileUpload} />
+          <button onClick={this.handleUploadButtonClick} type="button">
             <img src={plusIconSrc} alt="" />
           </button>
         </div>
@@ -93,13 +82,7 @@ export class FormUploadFile {
         <div class="file-icon__container">
           <img src={fileIconSrc} alt="file" />
         </div>
-        <div
-          class="times-icon__container"
-          onClick={() => {
-            this.updateFile(null);
-            this.updateErrors({ invalidFileType: false, isMoreThan1Mb: false });
-          }}
-        >
+        <div class="times-icon__container" onClick={this.handleDeleteIconClick}>
           <img src={timesIconSrc} alt="" />
         </div>
         <typography-text class="file__name" color="primary">
